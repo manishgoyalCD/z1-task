@@ -10,8 +10,10 @@ const MovieSearch = ({ searchText }) => {
     const fetchMovies = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://www.omdbapi.com/?s=${searchText}i=tt3896198&apikey=9de54fdf`);
+        const response = await fetch(`https://www.omdbapi.com/?s=${searchText}&i=tt3896198&apikey=9de54fdf`);
         const data = await response.json();
+        console.log(data);
+        
         if (data.Search) {
           setMovies(data.Search);
         } else {

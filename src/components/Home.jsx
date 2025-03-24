@@ -1,6 +1,5 @@
-// src/components/Home.jsx
-import React, { useEffect, useState } from 'react';
-import MovieCard from './MovieCard';
+import React, { useEffect, useState } from "react";
+import MovieCard from "./MovieCard";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -9,13 +8,15 @@ const Home = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetch('https://www.omdbapi.com/?s=batman&i=tt3896198&apikey=9de54fdf');
+        const response = await fetch(
+          "https://www.omdbapi.com/?s=avengers&i=tt3896198&apikey=9de54fdf"
+        );
         const data = await response.json();
         if (data.Search) {
-          setMovies(data.Search.slice(0, 10)); 
+          setMovies(data.Search.slice(0, 10));
         }
       } catch (error) {
-        console.error('Error fetching default movies', error);
+        console.error("Error fetching default movies", error);
       } finally {
         setLoading(false);
       }
@@ -25,11 +26,27 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        padding: "20px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       {loading ? (
-        <p>Loading...</p>
+        <p style={{ fontSize: "1.2rem", color: "#e50914" }}>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: "20px",
+            maxWidth: "1200px",
+            width: "100%",
+          }}
+        >
           {movies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
           ))}

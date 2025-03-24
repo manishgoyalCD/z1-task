@@ -1,5 +1,4 @@
-// src/components/MovieCard.jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const MovieCard = ({ movie }) => {
   const [expanded, setExpanded] = useState(false);
@@ -9,21 +8,47 @@ const MovieCard = ({ movie }) => {
   };
 
   return (
-    <div className="max-w-xs w-full mx-auto bg-white border border-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div
+      style={{
+        maxWidth: "250px",
+        width: "100%",
+        margin: "0 auto",
+        backgroundColor: "#1a1a1a",
+        border: "1px solid gray",
+        borderRadius: "12px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.3)")}
+      onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)")}
+    >
       <img
-        src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/200'}
+        src={movie.Poster !== "N/A" ? movie.Poster : ""}
         alt={movie.Title}
-        className="w-full h-64 object-cover rounded-t-lg"
+        style={{
+          width: "100%",
+          height: "300px",
+          objectFit: "cover",
+          borderTopLeftRadius: "12px",
+          borderTopRightRadius: "12px",
+        }}
       />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold text-gray-800">{movie.Title}</h3>
-        <p className="text-gray-600">{movie.Year}</p>
+      <div style={{ padding: "16px", color: "white" }}>
+        <h3 style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{movie.Title}</h3>
+        <p style={{ color: "#b0b0b0", marginBottom: "8px" }}>{movie.Year}</p>
         {expanded ? (
           <div>
-            <p className="text-gray-800 mt-2"><strong>Plot:</strong> {movie.Plot || 'No plot available'}</p>
+            <p style={{ color: "#ddd", marginTop: "8px" }}>
+              <strong>Plot:</strong> {movie.Plot || "No plot available"}
+            </p>
             <button
               onClick={handleExpand}
-              className="mt-2 text-blue-500 hover:underline"
+              style={{
+                marginTop: "8px",
+                color: "#3498db",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
             >
               Show Less
             </button>
@@ -31,7 +56,13 @@ const MovieCard = ({ movie }) => {
         ) : (
           <button
             onClick={handleExpand}
-            className="mt-2 text-blue-500 hover:underline"
+            style={{
+              marginTop: "8px",
+              color: "#3498db",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+            }}
           >
             Read More
           </button>
